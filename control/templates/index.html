@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/index.css') }}">
+    <meta charset="UTF-8">
+    <title>Лист задач</title>
+</head>
+<body>
+    <table>
+        <thead>
+          <tr>
+            <th>Задача
+            <th>Статус
+            <th>
+        </thead>
+        <tbody>
+        {% for task in alltasks %}
+          <tr>
+            <td></a><a href="{{ '/task?id=' + task}}">{{task}}</a>
+            <td><a href="{{ '/task?report=' +  task}}">{{status[task]}}</a>
+            {% if status[task] == "Complete" %}
+            <td>&#128994;
+            
+            {% else %}
+            <td>&#128997;
+            {% endif %}
+        {% endfor %}
+        </tbody>
+      </table>
+<p><a href="/upload"><button>Загрузить файл</button></a></p>
+</body>
+
+</html>

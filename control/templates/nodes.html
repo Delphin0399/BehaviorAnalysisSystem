@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>List of nodes</title>
+</head>
+<body>
+    {% for node in allnodes %}
+    {{node}}-{{nodes[node]}}-{{node_ip[node]}}-{{nodesAuth[node]}}<br>
+    {% endfor %}
+</body>
+
+</html>
