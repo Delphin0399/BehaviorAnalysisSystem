@@ -4,6 +4,7 @@ import yaml
 from flask import Flask, request, send_file, abort, render_template, make_response, url_for
 from werkzeug.utils import secure_filename
 import threading
+import classify
 
 app = Flask(__name__)
 last_error = ""
@@ -21,7 +22,7 @@ nodesFileId = {}
 
 
 
-
+clf = classify.load("clf.pickle")
 free_nodes = []
 queue = []
 requests = []
@@ -217,7 +218,8 @@ def run_check(id):
     #result = verdict(id)
     status[id] = "Complete"
     print("Checked report")
-    verdict[id] = "Clear"
+    X = classify.LoadValues(f"./files/{id}.report")
+    verdict[id] = classify.predict(X, clf)
     
 
 def check_node(req):
